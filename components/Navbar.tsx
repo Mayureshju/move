@@ -5,6 +5,7 @@ import { Menu, X, Dumbbell } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { ThemeToggle } from '@/components/theme-toggle'
+import Image from 'next/image'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -28,28 +29,29 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex items-center">
             <a href="/" className="flex items-center space-x-2">
-              <Dumbbell className="h-8 w-8 text-primary" />
-              <span className="text-xl font-bold text-gray-900 dark:text-white">Move</span>
+            <Image src={'/logo.png'} alt="Move Logo" width={200} height={200} />
+              {/* <Dumbbell className="h-8 w-8 text-primary" />
+              <span className={cn("text-xl font-bold text-white", isScrolled ? "text-gray-900":"text-white")}>Move</span> */}
             </a>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+            <a href="#features" className={cn("transition-colors", isScrolled ? "text-gray-600 hover:text-gray-900 ":"text-gray-300 hover:text-white")}>
               Features
             </a>
-            <a href="#pricing" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+            <a href="#pricing" className={cn("transition-colors", isScrolled ? "text-gray-600 hover:text-gray-900 ":"text-gray-300 hover:text-white")}>
               Pricing
             </a>
-            <a href="#about" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+            <a href="#about" className={cn("transition-colors", isScrolled ? "text-gray-600 hover:text-gray-900 ":"text-gray-300 hover:text-white")}>
               About
             </a>
-            <a href="#contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+            <a href="#contact" className={cn("transition-colors", isScrolled ? "text-gray-600 hover:text-gray-900 ":"text-gray-300 hover:text-white")}>
               Contact
             </a>
             <div className="flex items-center space-x-4">
               <ThemeToggle />
-              <Button variant="ghost" className="text-gray-900 dark:text-white hover:bg-primary/10">
+              <Button variant="ghost" className={cn("transition-colors", isScrolled ? "text-gray-900  " :"text-white hover:bg-primary/10")}>
                 Sign In
               </Button>
               <Button className="bg-primary hover:bg-primary/90 text-white">

@@ -23,78 +23,78 @@ import {
 const features = [
   {
     icon: BarChart3,
-    title: "Advanced Analytics",
-    description: "Gain deep insights into member behavior, attendance patterns, and business performance with our comprehensive analytics dashboard."
+    title: "Membership/Member Management",
+    description: "Seamlessly manage member profiles, subscriptions, attendance, and renewals.Automate reminders for expired memberships."
   },
   {
     icon: Calendar,
-    title: "Smart Scheduling",
-    description: "Automated class scheduling system with conflict resolution and intelligent capacity management."
+    title: "Classes/service Management",
+    description: "Schedule and manage classes, personal training sessions, and group workouts.Set up recurring or one-time classes with instructor assignments."
   },
   {
     icon: CreditCard,
-    title: "Seamless Payments",
-    description: "Integrated payment processing for memberships, classes, and additional services with automated billing."
+    title: "Instructor Management",
+    description: "Manage instructor profiles, schedules, payroll, and performance insights.Set up payment gateways for online payments."
   },
   {
     icon: Users,
-    title: "Member Management",
-    description: "Comprehensive member profiles with attendance tracking, progress monitoring, and communication history."
+    title: "Appointment Booking",
+    description: "Allow members to book appointments online for personal training, classes, or consultations."
   },
   {
     icon: Activity,
-    title: "Fitness Tracking",
-    description: "Real-time workout tracking and progress monitoring for members with personalized goals and milestones."
+    title: "Point of Sale",
+    description: "Integrated POS system to handle gym merchandise, membership sales, and services."
   },
   {
     icon: Brain,
-    title: "AI Personal Training",
-    description: "AI-powered workout recommendations and form correction based on individual member profiles and goals."
+    title: "HRMS Integration",
+    description: "Manage staff attendance, payroll, leave, and recruitment seamlessly."
   },
   {
     icon: MessageSquare,
-    title: "Communication Hub",
-    description: "Centralized communication platform for announcements, member feedback, and direct messaging."
+    title: "CRM for Lead Management",
+    description: "Track gym inquiries and convert leads into members with a powerful CRM tool."
   },
   {
     icon: Bell,
-    title: "Smart Notifications",
-    description: "Automated reminders for classes, payments, and important updates through multiple channels."
+    title: "Helpdesk Support",
+    description: "Enable a dedicated helpdesk for member queries, complaints, and feedback."
   },
   {
     icon: Smartphone,
-    title: "Mobile Access",
-    description: "Full-featured mobile app for members to book classes, track progress, and access resources on the go."
+    title: "BI & analytic Tool",
+    description: "Gain actionable insights with business intelligence dashboards for revenue, attendance, and class performance."
   },
   {
     icon: LineChart,
-    title: "Performance Metrics",
-    description: "Detailed reporting on business KPIs, member retention, and revenue analytics."
+    title: "Diet Management",
+    description: "Create personalized diet plans and track nutrition for members."
   },
   {
     icon: Shield,
-    title: "Secure Access",
-    description: "Advanced access control system with digital key cards and biometric authentication options."
+    title: "Member Mobile APP",
+    description: "Offer a branded mobile app for members to book classes, track progress, and renew memberships."
   },
   {
     icon: Settings,
-    title: "Equipment Management",
-    description: "Track equipment maintenance, usage, and scheduling with automated service notifications."
+    title: "Payment Gateway",
+    description: "Support multiple payment methods, including card payments, Google Pay, Apple Pay, and more."
   },
   {
     icon: Clock,
-    title: "Attendance Tracking",
-    description: "Automated check-in system with real-time occupancy monitoring and capacity management."
+    title: "⁠Coupon Management",
+    description: "Launch promotional campaigns with coupons and discounts."
   },
   {
     icon: Zap,
-    title: "Energy Management",
-    description: "Smart controls for lighting, HVAC, and equipment to optimize energy usage and reduce costs."
+    title: "Email & SMS Management",
+    description: "Automate communication with members for updates, promotions, and reminders."
   },
   {
     icon: Award,
-    title: "Rewards Program",
-    description: "Gamified loyalty program with achievements, challenges, and rewards for member engagement."
+    title: "Document Management System (DMS)",
+    description: "Organize and store important documents securely on the cloud."
   }
 ]
 
