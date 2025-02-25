@@ -87,8 +87,8 @@ export default function HeroSection() {
           stagger: {
             each: 0.2,
             onUpdate: function() {
-              stat.textContent = Math.ceil(this.targets()[0].textContent) + '+'
-            },
+              stat.textContent = Math.ceil(parseFloat(stat.textContent || '0')) + '+';
+            }            
           },
           scrollTrigger: {
             trigger: statsRef.current,
