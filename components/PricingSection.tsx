@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { Check, CreditCard, Plus, X } from 'lucide-react'
 import { Button } from './ui/button'
 import {
@@ -55,13 +56,13 @@ export default function PricingSection() {
   const getTotalPrice = () => {
     const customizationYearlyTotal = selectedCustomizations.reduce((total, name) => {
       const customization = customizations.find(c => c.name === name)
-      return total + ((customization?.price || 0) * 12) // Multiply by 12 for yearly total
+      return total + ((customization?.price || 0) * 12)
     }, 0)
-    return getPrice(basePrice + customizationYearlyTotal) // Base yearly price + yearly customizations
+    return getPrice(basePrice + customizationYearlyTotal)
   }
 
   const getCustomizationYearlyPrice = (price: number) => {
-    return getPrice(price * 12) // Show yearly price for customizations
+    return getPrice(price * 12)
   }
 
   const toggleCustomization = (name: string) => {
@@ -73,9 +74,15 @@ export default function PricingSection() {
   }
 
   return (
-    <section id="pricing" className="py-24 bg-gray-50 dark:bg-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+    <section id="pricing" className="py-24 bg-gray-50 dark:bg-black relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Simple, Transparent Pricing
           </h2>
@@ -96,66 +103,82 @@ export default function PricingSection() {
               </SelectContent>
             </Select>
           </div>
-        </div>
+        </motion.div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="relative group">
-            <div className="absolute -inset-px bg-gradient-to-r from-primary to-primary/50 rounded-2xl blur-lg opacity-25 group-hover:opacity-100 transition-all duration-500"></div>
-            <div className="relative p-8 bg-white dark:bg-zinc-950/50 border border-gray-200 dark:border-primary/20 rounded-2xl hover:border-primary/40 transition-all duration-300">
+          <div className="relative bg-white dark:bg-zinc-900 rounded-2xl shadow-xl overflow-hidden">
+            {/* Animated Background */}
+            <div className="absolute inset-0">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-50" />
+              <div 
+                className="absolute inset-0 bg-[linear-gradient(45deg,transparent_40%,hsl(var(--primary)/10%)_40%,hsl(var(--primary)/10%)_60%,transparent_60%)] bg-[length:200%_200%] animate-gradient"
+              />
+            </div>
+
+            <div className="relative p-8">
               <div className="flex items-center justify-between mb-8">
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Core Plan</h3>
                   <p className="text-gray-600 dark:text-gray-400">Perfect for single location gyms</p>
                 </div>
-                <div className="p-3 rounded-lg bg-primary/20 text-primary">
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 10 }}
+                  className="p-3 rounded-lg bg-primary/20 text-primary"
+                >
                   <CreditCard className="h-6 w-6" />
-                </div>
+                </motion.div>
               </div>
               
               <div className="mb-8">
-                <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                <motion.div
+                  initial={{ scale: 0.9 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  className="text-4xl font-bold text-gray-900 dark:text-white mb-2"
+                >
                   {getPrice(basePrice)}
                   <span className="text-lg text-gray-500 dark:text-gray-400 ml-2">/year</span>
-                </div>
+                </motion.div>
                 <p className="text-gray-600 dark:text-gray-400">Per Location</p>
               </div>
 
               <div className="mb-8">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Core Features</h4>
                 <ul className="space-y-4">
-                  <li className="flex items-center text-gray-700 dark:text-gray-300">
-                    <Check className="h-5 w-5 text-primary mr-3" />
-                    <span>Class Management</span>
-                  </li>
-                  <li className="flex items-center text-gray-700 dark:text-gray-300">
-                    <Check className="h-5 w-5 text-primary mr-3" />
-                    <span>Member Management</span>
-                  </li>
-                  <li className="flex items-center text-gray-700 dark:text-gray-300">
-                    <Check className="h-5 w-5 text-primary mr-3" />
-                    <span>Instructor Management</span>
-                  </li>
-                  <li className="flex items-center text-gray-700 dark:text-gray-300">
-                    <Check className="h-5 w-5 text-primary mr-3" />
-                    <span>Point of Sale</span>
-                  </li>
-                  <li className="flex items-center text-gray-700 dark:text-gray-300">
-                    <Check className="h-5 w-5 text-primary mr-3" />
-                    <span>Inventory Management</span>
-                  </li>
-                  <li className="flex items-center text-gray-700 dark:text-gray-300">
-                    <Check className="h-5 w-5 text-primary mr-3" />
-                    <span>Online Booking</span>
-                  </li>
+                  {['Class Management', 'Member Management', 'Instructor Management', 'Point of Sale', 'Inventory Management', 'Online Booking'].map((feature, index) => (
+                    <motion.li
+                      key={feature}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ x: 5 }}
+                      className="flex items-center text-gray-700 dark:text-gray-300"
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.2, rotate: 180 }}
+                        transition={{ type: "spring", stiffness: 200 }}
+                        className="mr-3"
+                      >
+                        <Check className="h-5 w-5 text-primary" />
+                      </motion.div>
+                      <span>{feature}</span>
+                    </motion.li>
+                  ))}
                 </ul>
               </div>
 
               <div className="mb-8">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Customizations</h4>
                 <div className="space-y-3">
-                  {customizations.map((customization) => (
-                    <button
+                  {customizations.map((customization, index) => (
+                    <motion.button
                       key={customization.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ scale: 1.02 }}
                       onClick={() => toggleCustomization(customization.name)}
                       className={`w-full flex items-center justify-between p-4 rounded-lg border transition-all duration-200 ${
                         selectedCustomizations.includes(customization.name)
@@ -164,11 +187,16 @@ export default function PricingSection() {
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        {selectedCustomizations.includes(customization.name) ? (
-                          <X className="h-5 w-5" />
-                        ) : (
-                          <Plus className="h-5 w-5" />
-                        )}
+                        <motion.div
+                          whileHover={{ rotate: 180 }}
+                          transition={{ type: "spring", stiffness: 200 }}
+                        >
+                          {selectedCustomizations.includes(customization.name) ? (
+                            <X className="h-5 w-5" />
+                          ) : (
+                            <Plus className="h-5 w-5" />
+                          )}
+                        </motion.div>
                         <span>{customization.name}</span>
                       </div>
                       <div className="text-right">
@@ -177,24 +205,41 @@ export default function PricingSection() {
                           {getCustomizationYearlyPrice(customization.price)}/year
                         </div>
                       </div>
-                    </button>
+                    </motion.button>
                   ))}
                 </div>
               </div>
 
-              <div className="border-t border-gray-200 dark:border-gray-700 pt-6 mb-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="border-t border-gray-200 dark:border-gray-700 pt-6 mb-8"
+              >
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-lg font-semibold text-gray-900 dark:text-white">Total Yearly</span>
-                  <span className="text-2xl font-bold text-primary">{getTotalPrice()}</span>
+                  <motion.span
+                    key={getTotalPrice()}
+                    initial={{ scale: 0.8 }}
+                    animate={{ scale: 1 }}
+                    className="text-2xl font-bold text-primary"
+                  >
+                    {getTotalPrice()}
+                  </motion.span>
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Includes core plan and selected customizations (yearly)
                 </p>
-              </div>
+              </motion.div>
 
-              <Button className="w-full bg-primary hover:bg-primary/90 text-lg py-6">
-                Get Started
-              </Button>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button className="w-full bg-primary hover:bg-primary/90 text-lg py-6">
+                  Get Started
+                </Button>
+              </motion.div>
             </div>
           </div>
         </div>
